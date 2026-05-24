@@ -23,22 +23,22 @@
 \setmainfont[
     Path = fonts/Main/,
     Extension = .otf,
-    BoldFont = texgyretermes-bold.otf, % 加粗字体
-]{texgyretermes-regular.otf} % 正文字体
+    BoldFont = texgyretermes-bold.otf,
+]{texgyretermes-regular.otf}
 
 % 中文字体设置
 \setCJKmainfont[
     Path = fonts/hansans/,
     Extension = .ttf,
-    BoldFont = NotoSansSC-Bold.ttf, % 加粗字体
-]{NotoSansSC-Regular.otf} % 正文字体
+    BoldFont = NotoSansSC-Bold.ttf,
+]{NotoSansSC-Regular.ttf}
 
 
 \usepackage{relsize}
 \usepackage{xspace}
 
 % 使用 fontawesome（部分图标）
-\usepackage{fontawesome} 
+\usepackage{fontawesome}
 
 % A4纸，上下左右边距
 \usepackage[
@@ -54,33 +54,32 @@
 
 \usepackage{titlesec}
 \usepackage{enumitem}
-\setlist{noitemsep} % 取消列表项间的额外间距
-%\setlist{nosep} % 取消所有垂直间距
+\setlist{noitemsep}
 \setlist[itemize]{topsep=0.25em, leftmargin=*}
 \setlist[enumerate]{topsep=0.25em, leftmargin=*}
 
 % --- 用于控制【不同项目之间】的垂直距离 ---
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.9em} % <--- 在此调整项目之间的距离
+\setlength{\interProjectSpacing}{0.9em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 
 % --- 用于控制【项目标题】与下方【项目描述】的距离 ---
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.4em} % <--- 在此调整标题和描述的距离
+\setlength{\intraProjectTitleSep}{0.4em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 
 % --- 用于控制【项目描述】与下方【要点列表】的距离 ---
 \newlength{\intraProjectListTopSep}
-\setlength{\intraProjectListTopSep}{0.2em} % <--- 在此调整描述和列表的距离
+\setlength{\intraProjectListTopSep}{0.2em}
 
 % =======================================================================
 
 
-\titleformat{\section}         % 定制 \section 命令 
-{\large\bfseries\raggedright} % 将 section 标题设置为大号、粗体且左对齐
-{}{0em}                      % 可用于为所有 section 添加前缀（如“章节...”）
-{}                           % 可用于在标题前插入代码
-[{\color{CVBlue}\titlerule}]  % 在标题后插入一条横线
+\titleformat{\section}
+{\large\bfseries\raggedright}
+{}{0em}
+{}
+[{\color{CVBlue}\titlerule}]
 \titlespacing*{\section}{0cm}{*1.6}{*1.2}
 
 
@@ -89,67 +88,63 @@
 \pagenumbering{gobble}
 
 %%%% 利用tikz来定位照片
-\begin{tikzpicture}[remember picture, overlay] 
+\begin{tikzpicture}[remember picture, overlay]
     \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{avatar.jpg}};
   \end{tikzpicture}%
   %%%% 利用tikz来定位学校Logo，这里只在第一页显示
-  \begin{tikzpicture}[remember picture, overlay] 
+  \begin{tikzpicture}[remember picture, overlay]
     \node[anchor = north west] at ($(current page.north west)+(0.5cm,+1.0cm)$) {\includegraphics[height=6cm]{image.png}};
   \end{tikzpicture}%
-\centerline{\LARGE\bfseries{胡豆}} 
+\centerline{\LARGE\bfseries{刘方达}}
 
-\centerline{\normalsize{\faPhone\ 111-1111-1111 \quad \faEnvelopeO\ \href{mailto:3230100000@zju.edu.cn}{3230100000@zju.edu.cn}}} 
+\centerline{\normalsize{\faPhone\ 15270503448 \quad \faEnvelopeO\ \href{mailto:1427739476@qq.com}{1427739476@qq.com}}}
 
-\centerline{\normalsize{\faGithubSquare\ \href{https://github.com/maksymilan}{https://github.com/maksymilan} \quad \faRssSquare\ \href{https://maksymilan.github.io/}{https://maksymilan.github.io}}} 
-    
-\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}    
-\textbf{重庆大学} \hfill 2019.9 -- 2023.6\\[0.5em] % 标题和正文间加一点距离
+
+\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
+\textbf{重庆大学} \hfill 2019.9 -- 2023.6\\[0.5em]
 土木工程\quad 本科
-\textbf{中国科学技术大学} \hfill 2025.9 -- 至今\\[0.5em] % 标题和正文间加一点距离
-软件工程\quad 研一 
+
+\textbf{中国科学技术大学} \hfill 2025.9 -- 2028.6\\[0.5em]
+软件工程\quad 硕士（专业top10\%）
 
 
 \section{\makebox[\widthof{\faUsers}][c]{\color{CVBlue}\faUsers}\ 项目经历}
 
 % --- 第一个项目 ---
-% 将标题行末尾的 \\ 替换为 \titlebreak 命令
-\textbf{98烂坑风控与可视化作战平台} \hfill 2024.08 -- 至今 \titlebreak
-项目描述：为维护cc98社区的讨论纯度、净化“心灵之约”版块风气，本项目旨在对“烂坑”进行科学、严谨的量化分析，并引入\textbf{大语言模型(LLM)}对烂坑帖进行\textbf{自动化情感极性与“离谱指数”标注}。
-% 在 itemize 的选项中，使用 topsep=\intraProjectListTopSep 来控制上边距
+\textbf{差旅出行助手 Agent 系统} \hfill 2026.01 -- 2026.04 \titlebreak
+为旅游公司设计的智能出行助手，解决传统旅行规划中多平台切换、体验割裂的痛点。初版系统意图识别准确率仅65\%，单次响应30秒。通过引入\textbf{多Agent协作、RAG知识库、双层记忆系统}重构整体架构。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{数据与后端}：运用 \textbf{Go} 语言及 \textbf{GORM} 框架，实现对全站“烂坑”帖的7x24小时全天候\textbf{抓取}与\textbf{入库}(MySQL)。
-    \item \textbf{可视化前端}：采用原生 \textbf{HTML/CSS/JS} 构建了“烂坑”实时监控\textbf{作战大屏}。实现了坑主成分分析、挖坑热力图、年度烂坑王榜单等\textbf{可视化图表}，并通过 \textbf{AJAX} 异步刷新，确保数据洞察的实时性。
-    \item \textbf{核心产出}：全面掌握了从\textbf{数据采集、清洗、LLM标注到可视化分析}的“反烂坑”全链路技术。
+    \item \textbf{多Agent协作优化}：重构 IntentionAgent 为基于LLM语义理解的\textbf{多意图识别系统}，支持意图识别、事项收集、偏好管理、知识问答、信息查询、行程生成6大类意图。实现\textbf{优先级+并行混合调度}，端到端响应时间从30秒降至15秒。
+    \item \textbf{RAG知识库}：基于 \textbf{Milvus向量数据库 + BGE-M3 Embedding + 滑动窗口Chunking}，构建差旅政策、城市攻略、FAQ三类知识库。采用\textbf{混合检索（向量+关键词）+ 文档溯源}保证答案可信度。集成 Google Search API 实现天气、限行等实时信息动态查询。
+    \item \textbf{两层记忆系统}：设计"短期记忆 + 长期记忆 + 异步LLM总结"机制，引入 PreferenceAgent 智能识别偏好追加/覆盖动作。集成 \textbf{Redis缓存层}承载热数据与LLM总结结果，缓存命中率达85\%。
+    \item \textbf{Skill Plugins插件化}：实现 \textbf{LazyAgentRegistry 动态发现+懒加载}机制，系统启动时仅扫描注册不加载实例，首次调用时按需加载并缓存。采用 Progressive Disclosure 策略，启动速度优化至3秒。
 \end{itemize}
 
-% 使用 \projectsep 命令来分隔两个项目
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{AIGC驱动的超进化自动挖坑机 (Agent)} \hfill 2025.02 -- 至今 \titlebreak
-项目描述：为探索心灵版规的边界，以及测试版主锁沉反应速度的极限，本项目基于\textbf{多智能体协作(MCP)与LLM}技术，开发了一款能\textbf{自主“挖坑”与“互坑”}的AI Agent。
+\textbf{MXWbot — 多通道智能 Agent 对话框架} \hfill 2025.09 -- 至今 \titlebreak
+传统 chatbot 框架通常仅支持单一通道、固定工具集、流式与非流式路径割裂。初版MXWbot代码重复率40\%，工具调用失败后无降级机制，工具定义Token开销占输入50\%。基于\textbf{统一消息处理架构 + 三层降级保护 + 工具懒加载}重构。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{并发与调度}：后端采用 \textbf{Go} 语言，充分利用 \textbf{Goroutine} 和 \textbf{Channel} 的高并发模型，模拟\textbf{用户并发在线}，执行定时挖坑，确保挖坑行动的\textbf{隐蔽性}与\textbf{高效性}。
-    \item \textbf{实时监控与响应}：运用 \textbf{WebSocket} 协议实现了对目标帖子的\textbf{实时监听与交互}。确保在烂坑被识破的第一时间，Agent能光速完成\textbf{“lktp”}或\textbf{反向钓鱼}操作，展现出极高的AI博弈能力。
-    \item \textbf{可视化GUI}：前端使用 \textbf{React} 框架构建了\textbf{后台管理的可视化面板 (Admin Panel)}。可一键下达挖坑指令、动态调整Agent的\textbf{指令}、并实时监控数据。
+    \item \textbf{统一消息处理架构}：设计 \textbf{LoopPool + Loop八状态事件驱动引擎}（COMMAND → RESTORE → COMPACT → BUILD → RUN → SAVE → RESPOND → DONE），搭配 MessageBus 双向消息队列。Agent/Serve/Cron/Heartbeat 四种调用路径统一通过 Bus 投递，消除代码重复。Semaphore(20)全局并发控制 + per-session asyncio.Lock 串行化。
+    \item \textbf{三层工具降级保护}：连续3次工具失败注入System提示强制LLM停止重试 → max\_iterations耗尽时追加一次无工具LLM调用产出自然语言回复 → 最终兜底文案。确保用户在任何极端情况下都能看到有意义的回复。
+    \item \textbf{工具定义懒加载}：设计 GetToolSchema 元工具，首轮仅发送核心4个工具Schema，其余通过文本目录声明。LLM按需调用获取完整参数定义，同Session内缓存。工具数50+时可节省\textbf{65\%输入Token}。
+    \item \textbf{双层记忆 + 多通道 + 安全防御}：短期记忆基于Session JSONL（Token裁剪pipeline），长期记忆基于SQLite+FTS5全文索引+异步LLM Summarizer。BaseChannel抽象层支持微信/QQ/Email三通道。SSRF校验、路径穿越防护、Token AES-GCM加密、命令注入检测等纵深防御。
 \end{itemize}
+
 
 \section{\makebox[\widthof{\faCogs}][c]{\color{CVBlue}\faCogs}\ 技术栈}
 \begin{itemize}[nosep]
-    \item \textbf{编程语言：} \textbf{Go}, Python, C++
-    \item \textbf{开发工具：} SSH, Git, Vim, MakeFile,LaTex
-    \item \textbf{操作系统：} Linux
+    \item \textbf{编程语言：} Python（熟练），C/C++（掌握）
+    \item \textbf{AI \& Agent：} Agent核心模块（任务规划、意图路由、短/长期记忆、工具调用、反思与证据校验），RAG搭建与优化（意图识别、混合检索、重排），Context Engineering，Harness Engineering
+    \item \textbf{工具与平台：} Milvus，Redis，SQLite，Git，Linux，Claude Code，Codex
+    \item \textbf{前沿关注：} LoRA/QLoRA高效微调，DPO/GRPO等RL算法，Subagent、Skills等Agent架构前沿技术
 \end{itemize}
-\section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faList}\ 获奖情况}
-\begin{itemize}
-    \item CC98年度用户 \hfill 2023.12
-    
-\end{itemize}
-    
+
+
 \section{\makebox[\widthof{\faInfo}][c]{\color{CVBlue}\faInfo}\ 其他}
 \begin{itemize}[parsep=0.5ex]
-    \item \textbf{技术博客：} \href{https://maksymilan.github.io/}{https://maksymilan.github.io/}
-    \item \textbf{GitHub：} \href{https://github.com/maksymilan}{https://github.com/maksymilan} 
-    \item \textbf{英语水平：} CET-4, CET-6
+    \item \textbf{英语水平：} CET-4
+    \item \textbf{实习状态：} 可支持异地实习一年以上
 \end{itemize}
 \end{document}

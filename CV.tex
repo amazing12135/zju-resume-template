@@ -89,11 +89,7 @@
 
 %%%% 利用tikz来定位照片
 \begin{tikzpicture}[remember picture, overlay]
-    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{avatar.jpg}};
-  \end{tikzpicture}%
-  %%%% 利用tikz来定位学校Logo，这里只在第一页显示
-  \begin{tikzpicture}[remember picture, overlay]
-    \node[anchor = north west] at ($(current page.north west)+(0.5cm,+1.0cm)$) {\includegraphics[height=6cm]{image.png}};
+    \node[anchor = north east] at ($(current page.north east)+(-2cm,-1.2cm)$) {\includegraphics[height=3cm]{lfd.png}};
   \end{tikzpicture}%
 \centerline{\LARGE\bfseries{刘方达}}
 
@@ -111,7 +107,7 @@
 \section{\makebox[\widthof{\faUsers}][c]{\color{CVBlue}\faUsers}\ 项目经历}
 
 % --- 第一个项目 ---
-\textbf{差旅出行助手 Agent 系统} \hfill 2026.01 -- 2026.04 \titlebreak
+\textbf{差旅出行助手 Agent 系统} \hfill 2026.01 -- 2026.03 \titlebreak
 为旅游公司设计的智能出行助手，解决传统旅行规划中多平台切换、体验割裂的痛点。初版系统意图识别准确率仅65\%，单次响应30秒。通过引入\textbf{多Agent协作、RAG知识库、双层记忆系统}重构整体架构。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{多Agent协作优化}：重构 IntentionAgent 为基于LLM语义理解的\textbf{多意图识别系统}，支持意图识别、事项收集、偏好管理、知识问答、信息查询、行程生成6大类意图。实现\textbf{优先级+并行混合调度}，端到端响应时间从30秒降至15秒。
@@ -123,7 +119,7 @@
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{MXWbot — 多通道智能 Agent 对话框架} \hfill 2025.09 -- 至今 \titlebreak
+\textbf{MXWbot — 多通道智能 Agent 对话框架} \hfill 2026.03 -- 2026.05 \titlebreak
 传统 chatbot 框架通常仅支持单一通道、固定工具集、流式与非流式路径割裂。初版MXWbot代码重复率40\%，工具调用失败后无降级机制，工具定义Token开销占输入50\%。基于\textbf{统一消息处理架构 + 三层降级保护 + 工具懒加载}重构。
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{统一消息处理架构}：设计 \textbf{LoopPool + Loop八状态事件驱动引擎}（COMMAND → RESTORE → COMPACT → BUILD → RUN → SAVE → RESPOND → DONE），搭配 MessageBus 双向消息队列。Agent/Serve/Cron/Heartbeat 四种调用路径统一通过 Bus 投递，消除代码重复。Semaphore(20)全局并发控制 + per-session asyncio.Lock 串行化。

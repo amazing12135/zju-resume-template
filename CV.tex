@@ -45,7 +45,7 @@
     a4paper,
     left=1.2cm,
     right=1.2cm,
-    top=1.5cm,
+    top=1.2cm,
     bottom=1cm,
     nohead
 ]{geometry}
@@ -108,7 +108,6 @@
 % --- 第一个项目 ---
 \textbf{医疗 Agent 系统} \hfill 2026.02 -- 2026.04 \titlebreak
 \textbf{项目背景:}传统单Agent医疗问答系统存在\textbf{响应效率低、复杂问题分析不全面、多轮对话上下文理解能力弱}等问题。面对多症状、多维度的医疗咨询时，回答准确性与稳定性不足；同时缺乏长效记忆机制，无法连贯理解用户意图，难以满足实际需求。
-
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{Skill-Agent两层架构}：底层构建7个原子Skills供Agent使用，上层3个专业Agent根据任务需求自主选择调用，Skills和Agent完全解耦；
     \item \textbf{Agent loop执行机制}：基于ReAct框架实现Think-Act-Observe循环，LLM自主决策工具调用并观察结果，设置硬性限制最多调用2次工具防止过度调用，单Agent平均响应时间控制在15秒以内；
@@ -121,12 +120,12 @@
 
 % --- 第二个项目 ---
 \textbf{MxwClaw-类claw 对话机器人} \hfill 2026.04 -- 2026.05 \titlebreak                                                                                                                                                                                                                                                                         
-\begin{itemize}[nosep, topsep=\intraProjectListTopSep]
+\begin{itemize}[nosep]
     \item \textbf{8 状态事件驱动编排引擎}：实现8状态流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
     \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，连续失败 3 次自动注入提示引导 LLM 停止重试，max\_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；
     \item \textbf{三层记忆体系}：工作记忆（Session JSONL 持久化）、情节记忆（LLM 摘要压缩）、长期记忆（SQLite + FTS5 全文索引）；
     \item \textbf{多渠道安全通信}：支持微信、QQ、邮件，统一确认 FIFO 队列 + TTL Task 生命周期管理；
-    \item \textbf{6 维降级矩阵}：6 种故障场景预定义降级策略，checkpoint三重触发机制，Provider 4 次重试退避（1s→2s→4s）异常永不传播；
+    \item \textbf{6 维降级矩阵}：6 种故障场景预定义降级策略，checkpoint三重触发机制，Provider 4 次重试退避（1s→2s→4s）；
     \item \textbf{项目结果}:E2E 场景通过率 95.8\%（23/24），平均端到端延迟 5-10s，纯文本问答 2-4s；
 \end{itemize}
 

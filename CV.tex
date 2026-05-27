@@ -119,8 +119,8 @@
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{MxwClaw-类claw 对话机器人} \hfill 2026.04 -- 2026.05 \titlebreak                                                                                                                                                                                                                                                                         
-\begin{itemize}[nosep]
+\textbf{MxwClaw：多渠道智能 Agent 框架} \hfill 2026.04 -- 2026.05 \\[0.3em]
+\begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{8 状态事件驱动编排引擎}：实现8状态流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
     \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，连续失败 3 次自动注入提示引导 LLM 停止重试，max\_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；
     \item \textbf{三层记忆体系}：工作记忆（Session JSONL 持久化）、情节记忆（LLM 摘要压缩）、长期记忆（SQLite + FTS5 全文索引）；

@@ -43,9 +43,9 @@
 % A4纸，上下左右边距
 \usepackage[
     a4paper,
-    left=1.1cm,
-    right=1.1cm,
-    top=1.2cm,
+    left=1.0cm,
+    right=1.0cm,
+    top=1.0cm,
     bottom=1cm,
     nohead
 ]{geometry}
@@ -119,7 +119,7 @@
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{MxwClaw：多渠道智能 Agent 框架} \hfill 2026.04 -- 2026.05 \\[0.2em]
+\textbf{MxwClaw：多渠道智能 Agent 框架} \hfill 2026.04 -- 2026.05 \\[0.1em]
 \begin{itemize}[nosep]
     \item \textbf{8 状态事件驱动编排引擎}：实现8状态流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
     \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，连续失败 3 次自动注入提示引导 LLM 停止重试，max\_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；

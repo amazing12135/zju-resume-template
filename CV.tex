@@ -108,7 +108,7 @@
 % --- 第一个项目 ---
 \textbf{医疗 Agent 系统} \hfill 2026.02 -- 2026.04 \titlebreak
 \textbf{项目背景:}传统单Agent医疗问答系统存在\textbf{响应效率低、复杂问题分析不全面、多轮对话上下文理解能力弱}等问题。面对多症状、多维度的医疗咨询时，回答准确性与稳定性不足；同时缺乏长效记忆机制，无法连贯理解用户意图，难以满足实际需求。
-\begin{itemize}[nosep, topsep=\intraProjectListTopSep]
+\begin{itemize}[nosep]
     \item \textbf{Skill-Agent两层架构}：底层构建7个原子Skills供Agent使用，上层3个专业Agent根据任务需求自主选择调用，Skills和Agent完全解耦；
     \item \textbf{Agent loop执行机制}：基于ReAct框架实现Think-Act-Observe循环，LLM自主决策工具调用并观察结果，设置硬性限制最多调用2次工具防止过度调用，单Agent平均响应时间控制在15秒以内；
     \item \textbf{Agent Swarm}：智能路由判断问题复杂度，复杂问题自动分解任务并分配给多个Agent并行执行，Agent间通过共享上下文间接共享任务状态和执行结果；
@@ -119,7 +119,7 @@
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{MxwClaw：多渠道智能 Agent 框架} \hfill 2026.04 -- 2026.05 \\[0.1em]
+\textbf{MxwClaw：多渠道智能 Agent 框架} \hfill 2026.04 -- 2026.05 \\[0em]
 \begin{itemize}[nosep]
     \item \textbf{8 状态事件驱动编排引擎}：实现8状态流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
     \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，连续失败 3 次自动注入提示引导 LLM 停止重试，max\_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；

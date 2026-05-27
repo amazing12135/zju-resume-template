@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 
 
 \setlength{\parindent}{0pt}
@@ -45,12 +45,12 @@
     a4paper,
     left=1.2cm,
     right=1.2cm,
-    top=1.2cm,
-    bottom=0.8cm,
+    top=1.5cm,
+    bottom=1cm,
     nohead
 ]{geometry}
 
-\renewcommand{\baselinestretch}{1.2} % 行间距
+\renewcommand{\baselinestretch}{1.5} % 行间距设为1.5
 
 \usepackage{titlesec}
 \usepackage{enumitem}
@@ -60,17 +60,17 @@
 
 % --- 用于控制【不同项目之间】的垂直距离 ---
 \newlength{\interProjectSpacing}
-\setlength{\interProjectSpacing}{0.5em}
+\setlength{\interProjectSpacing}{0.9em}
 \newcommand{\projectsep}{\vspace{\interProjectSpacing}}
 
 % --- 用于控制【项目标题】与下方【项目描述】的距离 ---
 \newlength{\intraProjectTitleSep}
-\setlength{\intraProjectTitleSep}{0.25em}
+\setlength{\intraProjectTitleSep}{0.8em}
 \newcommand{\titlebreak}{\\[\intraProjectTitleSep]}
 
 % --- 用于控制【项目描述】与下方【要点列表】的距离 ---
 \newlength{\intraProjectListTopSep}
-\setlength{\intraProjectListTopSep}{0.1em}
+\setlength{\intraProjectListTopSep}{0.4em}
 
 % =======================================================================
 
@@ -80,7 +80,7 @@
 {}{0em}
 {}
 [{\color{CVBlue}\titlerule}]
-\titlespacing*{\section}{0cm}{*1.0}{*0.8}
+\titlespacing*{\section}{0cm}{*1.6}{*1.2}
 
 
 
@@ -99,16 +99,15 @@
 \section{\makebox[\widthof{\faGraduationCap}][c]{\color{CVBlue}\faGraduationCap}\ 教育背景}
 \textbf{重庆大学} \hfill 2019.9 -- 2023.6\\[0.5em]
 土木工程\quad 本科
-
 \textbf{中国科学技术大学} \hfill 2025.9 -- 2028.6\\[0.5em]
-软件工程\quad 硕士（专业top10\%）
-
+软件工程\quad 硕士
 
 \section{\makebox[\widthof{\faUsers}][c]{\color{CVBlue}\faUsers}\ 项目经历}
 
 % --- 第一个项目 ---
 \textbf{医疗 Agent 系统} \hfill 2026.02 -- 2026.04 \titlebreak
 传统单 Agent 医疗问答系统存在\textbf{响应效率低、复杂问题分析不全面、多轮对话上下文理解能力弱}等问题。面对多症状、多维度的医疗咨询时，回答准确性与稳定性不足；同时缺乏长效记忆机制，无法连贯理解用户意图，难以满足实际医疗场景下高效、可靠、安全的智能问答需求。
+\textbf{解决方案:}
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
     \item \textbf{Skill-Agent两层架构}：底层构建7个原子Skills（知识检索、风险评估、症状分析、生活方式建议、ICD-10编码、临床指南、深度研究）供Agent使用，上层3个专业Agent（健康咨询、症状诊断、医学研究）根据任务需求自主选择调用，Skills和Agent完全解耦；
     \item \textbf{Agent loop执行机制}：基于ReAct框架实现Think-Act-Observe循环，LLM自主决策工具调用并观察结果，设置硬性限制最多调用2次工具防止过度调用，单Agent平均响应时间控制在15秒以内；
@@ -124,38 +123,31 @@
 \projectsep
 
 % --- 第二个项目 ---
-\textbf{通用 AI Agent 框架} \hfill 2026.03 -- 2026.05 \titlebreak                                                                                                                 
+\textbf{MxwClaw-类claw 对话机器人} \hfill 2026.04 -- 2026.05 \titlebreak                                                                                                                 
 传统单 Agent 聊天机器人框架普遍存在\textbf{多轮对话上下文膨胀严重、并发会话串行阻塞、工具调用安全边界模糊、流式响应卡顿}等问题。面对多用户高并发场景时，内存占用持续增长、LLM调用缺乏容错机制；同时缺乏系统级降级策略和 checkpoint 恢复能力，无法满足生产环境下高效、稳定、安全的多渠道智能 Agent 部署需求。                                                                                                                                                                  
+\textbf{解决方案:}
 \begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{8 状态事件驱动编排引擎}：基于显式状态转移表实现 \textbf{COMMAND→RESTORE→COMPACT→BUILD→RUN→SAVE→RESPOND→DONE} 流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，斜杠命令短路跳过 LLM 调用阶段，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
-    \item \textbf{LoopPool 并发隔离架构}：全局 Semaphore(20) 控制并发上限 + 每会话 asyncio.Lock 串行化同一用户消息，长驻消费者从 Bus 输入队列轮询（1s 超时），stop() 1秒内优雅退出，统一消息处理路径（CLI/Cron/Heartbeat/Channel 均经 Bus 入队）；
-    \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，支持流式 delta 实时转发至Channel，写操作批量确认（每轮迭代单次确认弹窗），连续失败 3 次自动注入提示引导 LLM 停止重试，max\_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；
+    \item \textbf{8 状态事件驱动编排引擎}：基于显式状态转移表实现状态流水线，Handler不直接路由、通过事件字符串驱动状态跃迁，斜杠命令短路跳过 LLM 调用阶段，RUN 异常自动回退至 RESTORE 恢复 checkpoint；
+    \item \textbf{LoopPool 并发隔离架构}：全局 Semaphore(20) 控制并发上限 + 每会话 asyncio.Lock 串行化同一用户消息，长驻消费者从 Bus 输入队列轮询（1s 超时），统一消息处理路径；
+    \item \textbf{ReAct Agent 执行引擎}：纯 ReAct 循环实现 LLM 调用→工具执行→结果注入的自主决策链，支持流式 delta 实时转发至Channel，写操作批量确认（每轮迭代单次确认弹窗），连续失败 3 次自动注入提示引导 LLM 停止重试，max_iterations 耗尽时触发最终无工具 LLM 调用生成文本回复；
     \item \textbf{三层记忆体系}：工作记忆（Session JSONL 持久化）、情节记忆（LLM 摘要压缩）、长期记忆（SQLite + FTS5 全文索引，重要性评分 + Jaccard 去重批量写入）；
-    \item \textbf{Purpose 隔离上下文构建}：AGENT/SUBAGENT/SUMMARY/SYSTEM 四种调用目的隔离上下文组装策略，AGENT 获完整上下文（身份提示词 + 技能 XML + 会话摘要 + 长期记忆 + 工具目录 + 对话历史），SUMMARY 获最小上下文（零记忆递归依赖），延迟加载扩展工具 Schema 降低首轮 Token 消耗；
     \item \textbf{多渠道安全通信}：支持微信、QQ、邮件，统一确认 FIFO 队列 + TTL Task 生命周期管理；
     \item \textbf{6 维降级矩阵}：MCP 断连/内存库故障/Channel 断连/速率限制/磁盘满/Runner 异常 6 种故障场景预定义降级策略，checkpoint三重触发机制，Provider 4 次重试退避（1s→2s→4s）异常永不传播；
 \end{itemize}
-
-\textbf{项目成果：}
-\begin{itemize}[nosep, topsep=\intraProjectListTopSep]
-    \item \textbf{系统性能：}E2E 场景通过率 91.7\%（22/24），平均端到端延迟 6000+ms，纯文本问答 2000+ms，token 膨胀比目标 ≤ 1.3x；
-    \item \textbf{稳定性与安全：}4 小时持续运行 0 崩溃，路径穿越 15 种变种拦截率 100\%，命令注入 10 种变种拦截率 100\%，checkpoint 恢复成功率 100\%；
-    \item \textbf{工程完备性：}3 个 LLM Provider（OpenAI/Anthropic/DeepSeek）、3 个 Channel（微信/QQ/邮件）、10+原子工具（文件系统/Shell沙箱/Web搜索抓取/Cron调度），全异步协程架构支持 20 用户并发；
-\end{itemize}
-
-
+\textbf{项目成果：}                                                                                                                                  
+\begin{itemize}[nosep, topsep=\intraProjectListTopSep]                                                                                               
+    \item \textbf{系统性能：}：E2E 场景通过率 95.8\%（23/24），平均端到端延迟 6-8s，纯文本问答 2-4s；                                                                                                                                                                
+\end{itemize} 
 \section{\makebox[\widthof{\faCogs}][c]{\color{CVBlue}\faCogs}\ 技术栈}
 \begin{itemize}[nosep]
     \item \textbf{编程语言：} Python（熟练）
     \item \textbf{AI \& Agent：} Agent核心模块（任务规划、意图路由、短/长期记忆、工具调用、反思与证据校验），RAG搭建与优化（意图识别、混合检索、重排），Context Engineering，Harness Engineering,Agent Swarm
     \item \textbf{工具与平台：} Milvus,Redis，SQLite，Git，Claude Code，Codex
-    \item \textbf{前沿关注：} LoRA/QLoRA高效微调，DPO/GRPO等RL算法，Subagent、Skills等Agent架构前沿技术
 \end{itemize}
 
 
 \section{\makebox[\widthof{\faInfo}][c]{\color{CVBlue}\faInfo}\ 其他}
 \begin{itemize}[parsep=0.5ex]
-    \item \textbf{英语水平：} CET-4
     \item \textbf{实习状态：} 可支持异地实习一年以上
 \end{itemize}
 \end{document}
